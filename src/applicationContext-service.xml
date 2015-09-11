@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- 配置所有的service --> 
+	<bean id="bdMapService" class="service.impl.BdMapServiceImpl" scope="prototype">
+		<property name="bdMapDao" ref="bdMapDao" />
+	</bean>
+	
+	<bean id="evaluateService" class="service.impl.EvaluateServiceImpl" scope="prototype">
+		<property name="evaluateDao" ref="evaluateDao" />
+	</bean>
+	
+	<bean id="guestService" class="service.impl.GuestServiceImpl" scope="prototype">
+		<property name="guestDao" ref="guestDao" />
+	</bean>
+	
+	<bean id="innService" class="service.impl.InnServiceImpl" scope="prototype">
+		<property name="innDao" ref="innDao" />
+	</bean>
+	
+	<bean id="orderRoomService" class="service.impl.OrderRoomServiceImpl" scope="prototype">
+		<property name="orderRoomDao" ref="orderRoomDao" />
+	</bean>
+	
+	<bean id="roleService" class="service.impl.RoleServiceImpl" scope="prototype">
+		<property name="roleDao" ref="roleDao" />
+	</bean>
+	
+	<bean id="roomService" class="service.impl.RoomServiceImpl" scope="prototype">
+		<property name="roomDao" ref="roomDao" />
+	</bean>
+	
+	<bean id="roomTypeService" class="service.impl.RoomTypeServiceImpl" scope="prototype">
+		<property name="roomTypeDao" ref="roomTypeDao" />
+	</bean>
+	
+	<bean id="userInfoService" class="service.impl.UserInfoServiceImpl" scope="prototype">
+		<property name="userInfoDao" ref="userInfoDao" />
+	</bean>
+	
+</beans>

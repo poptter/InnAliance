@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- 配置所有的action -->
+
+	<bean id="bdMapAction" class="action.BdMapAction" scope="prototype">
+		<property name="bdMapService" ref="bdMapService" />
+		<property name="userInfoService" ref="userInfoService" />
+		<property name="roleService" ref="roleService" />
+		<property name="innService" ref="innService" />
+	</bean>
+
+	<bean id="evaluateAction" class="action.EvaluateAction" scope="prototype">
+		<property name="evaluateService" ref="evaluateService" />
+		<property name="innService" ref="innService" />
+		<property name="userInfoService" ref="userInfoService" />
+		<property name="guestService" ref="guestService" />
+	</bean>
+
+	<bean id="guestAction" class="action.GuestAction" scope="prototype">
+		<property name="guestService" ref="guestService" />
+		<property name="roleService" ref="roleService" />
+		<property name="userInfoService" ref="userInfoService" />
+	</bean>
+
+	<bean id="innAction" class="action.InnAction" scope="prototype">
+		<property name="innService" ref="innService" />
+	</bean>
+
+	<bean id="orderRoomAction" class="action.OrderRoomAction" scope="prototype">
+		<property name="innService" ref="innService" />
+		<property name="guestService" ref="guestService" />
+		<property name="roomService" ref="roomService" />
+		<property name="orderRoomService" ref="orderRoomService" />
+	</bean>
+
+	<bean id="roleAction" class="action.RoleAction" scope="prototype">
+		<property name="roleService" ref="roleService" />
+	</bean>
+
+	<bean id="roomAction" class="action.RoomAction" scope="prototype">
+		<property name="innService" ref="innService" />
+		<property name="roomService" ref="roomService" />
+		<property name="roomTypeService" ref="roomTypeService" />
+	</bean>
+
+	<bean id="roomTypeAction" class="action.RoomTypeAction" scope="prototype">
+		<property name="roomTypeService" ref="roomTypeService" />
+	</bean>
+
+	<bean id="userInfoAction" class="action.UserInfoAction" scope="prototype">
+		<property name="userInfoService" ref="userInfoService" />
+	</bean>
+
+</beans>

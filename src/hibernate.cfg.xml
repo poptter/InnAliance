@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<!-- 产生对数据库连接的会话的工厂 -->
+	<session-factory>
+		<!-- 数据库驱动 -->
+		<property name="hibernate.connection.driver_class">
+			oracle.jdbc.driver.OracleDriver
+		</property>
+		<!-- url -->
+		<property name="hibernate.connection.url">
+			jdbc:oracle:thin:@127.0.0.1:1521:orcl
+		</property>
+		<!-- username -->
+		<property name="hibernate.connection.username">scott</property>
+		<!-- password -->
+		<property name="hibernate.connection.password">tiger</property>
+		
+		<!-- 数据库方言 -->
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.OracleDialect
+		</property>
+		<!-- 打开SQL输出 -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 配置存储当前线程的上下文环境 -->
+		<property name="hibernate.current_session_context_class">thread</property>
+	
+		<!-- 配置映射文件 -->
+		<mapping resource="po/BdMap.hbm.xml" />
+		<mapping resource="po/Evaluate.hbm.xml" />
+		<mapping resource="po/Guest.hbm.xml" />
+		<mapping resource="po/Inn.hbm.xml" />
+		<mapping resource="po/OrderRoom.hbm.xml" />
+		<mapping resource="po/Role.hbm.xml" />
+		<mapping resource="po/Room.hbm.xml" />
+		<mapping resource="po/RoomType.hbm.xml" />
+		<mapping resource="po/UserInfo.hbm.xml" />
+		
+	</session-factory>
+</hibernate-configuration>

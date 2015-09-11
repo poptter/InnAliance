@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- <constant>标签配置常量 -->
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true" />
+
+	<!-- 动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<!-- 引入其他的配置文件 -->
+	<!--<include file="??.xml"/> -->
+
+	<!-- 由Spring作为对象工厂生成Struts的Action -->
+	<constant name="struts.objectFactory" value="spring" />
+
+	<!-- Add packages here -->
+	<package name="default" namespace="/" extends="struts-default">
+		
+		<!-- 显示图片验证码 -->
+		<action name="SecurityCodeImageAction" class="action.SecurityCodeImageAction">
+				<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+		
+		<!-- 登录 -->
+		<action name="login" class="userInfoAction" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 退出 -->
+		<action name="loginOut" class="userInfoAction" method="loginOut">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 旅客注册 -->
+		<action name="addGuest" class="guestAction" method="addGuest">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 用户全查询 -->
+		<action name="queryAllUserInfo" class="userInfoAction" method="queryAllUserInfo">
+			<result name="success" >/user_manager.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 店家注册 -->
+		<action name="addBdMap" class="bdMapAction" method="addBdMap">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除用户 -->
+		<action name="deleteUserInfo" class="userInfoAction" method="deleteUserInfo">
+			<result name="success" type="chain">queryAllUserInfo</result>
+			<result name="err">/error.jsp</result>
+		</action>
+
+		<!-- 修改个人信息 -->
+		<action name="updateUserInfoBise" class="userInfoAction" method="updateUserInfoBise">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 修改用户密码 -->
+		<action name="updateUserPassword" class="userInfoAction" method="updateUserPassword">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查询所有客栈 -->
+		<action name="queryAllInn" class="innAction" method="queryAllInn">
+			<result name="success">/inn_info.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 通过客栈名称查询所有客栈 -->
+		<action name="queryAllInnByName" class="innAction" method="queryAllInnByName">
+			<result name="success">/inn_info.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 管理客栈信息 -->
+		<action name="innManager" class="innAction" method="innManager">
+			<result name="success">/inn_manager.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除客栈 -->
+		<action name="deleteInn" class="innAction" method="deleteInn">
+			<result name="success" type="chain">innManager</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查询客栈详情 -->
+		<action name="queryBdMapByInnId" class="bdMapAction" method="queryBdMapByInnId">
+			<result name="success">/inn_detial.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+
+		<!-- 查询需要修改的客栈信息 -->
+		<action name="queryBdMapByUserInfoId" class="bdMapAction" method="queryBdMapByUserInfoId">
+			<result name="success">/inn_update.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 修改的客栈信息 -->
+		<action name="updateBdMap" class="bdMapAction" method="updateBdMap">
+			<result name="success">/inn_update.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 修改的客栈信息 -->
+		<action name="queryInnInNotExamine" class="innAction" method="queryInnInNotExamine">
+			<result name="success">/inn_examine.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 通过审核 -->
+		<action name="passExamine" class="innAction" method="passExamine">
+			<result name="success" type="chain">queryInnInNotExamine</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 加入黑名单 -->
+		<action name="addInnBlacklist" class="innAction" method="addInnBlacklist">
+			<result name="success" type="chain">innManager</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 新增客房——查询客房类型 -->
+		<action name="queryAllRoomTypeForAddRoom" class="roomTypeAction" method="queryAllRoomType">
+			<result name="success">/room_add.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 新增客房 -->
+		<action name="addRoom" class="roomAction" method="addRoom">
+			<result name="success" type="chain">queryAllRoom</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查询客房列表 -->
+		<action name="queryAllRoom" class="roomAction" method="queryAllRoom">
+			<result name="success">/room_manager.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		
+		<!-- 查询待修改的客房信息 -->
+		<action name="queryUpdateRoomById" class="roomAction" method="queryUpdateRoomById">
+			<result name="success">/room_update.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 修改客房 -->
+		<action name="updateRoom" class="roomAction" method="updateRoom">
+			<result name="success" type="chain">queryAllRoom</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除客房 -->
+		<action name="deleteRoom" class="roomAction" method="deleteRoom">
+			<result name="success" type="chain">queryAllRoom</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查询“可用”的客房列表 -->
+		<action name="queryAllAvailableRoom" class="roomAction" method="queryAllAvailableRoom">
+			<result name="success">/room_schedule.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 通过客栈Id查询“可用”的客房列表 -->
+		<action name="queryAllAvailableRoomByInnId" class="roomAction" method="queryAllAvailableRoomByInnId">
+			<result name="success">/room_schedule.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 通过客房ID查询客房信息，并传到新增订单页面 -->
+		<action name="queryRoomByRoomIdForAddOrder" class="orderRoomAction" method="queryRoomByRoomIdForAddOrder">
+			<result name="success">/order_add.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 添加订单 -->
+		<action name="addOrderRoom" class="orderRoomAction" method="addOrderRoom">
+			<result name="success" type="chain">queryAllOrderRoom</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查看订单列表 -->
+		<action name="queryAllOrderRoom" class="orderRoomAction" method="queryAllOrderRoom">
+			<result name="success">/order_info.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查看待修改的订单列表 -->
+		<action name="queryAllOrderRoomByInnId" class="orderRoomAction" method="queryAllOrderRoomByInnId">
+			<result name="success">/order_update.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查看待修改的订单 -->
+		<action name="queryNeedUpdateOrder" class="orderRoomAction" method="queryNeedUpdateOrder">
+			<result name="success">/order_updateContent.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 修改订单信息 -->
+		<action name="updateOrderRoom" class="orderRoomAction" method="updateOrderRoom">
+			<result name="success"  type="chain">queryAllOrderRoomByInnId</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 订单管理列表 -->
+		<action name="queryAllOrderRoomForManager" class="orderRoomAction" method="queryAllOrderRoomForManager">
+			<result name="success">/order_manager.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除订单 -->
+		<action name="deleteOrderRoom" class="orderRoomAction" method="deleteOrderRoom">
+			<result name="success">/order_manager.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除订单 -->
+		<action name="unsubscribe" class="orderRoomAction" method="unsubscribe">
+			<result name="success"  type="chain">queryAllOrderRoomByInnId</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查看评论的客栈信息 -->
+		<action name="queryInnInfo" class="evaluateAction" method="queryInnInfo">
+			<result name="success">/evaluate_add.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 添加评论 -->
+		<action name="addEvaluate" class="evaluateAction" method="addEvaluate">
+			<result name="success"  type="chain">queryAllPassEvaluate</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查看审核评论列表 -->
+		<action name="queryAllEvaluate" class="evaluateAction" method="queryAllEvaluate">
+			<result name="success">/evaluate_examine.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 审核评论 -->
+		<action name="passEvaluate" class="evaluateAction" method="passEvaluate">
+			<result name="success" type="chain">queryAllEvaluate</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 删除评论 -->
+		<action name="deleteEvaluate" class="evaluateAction" method="deleteEvaluate">
+			<result name="success" type="chain">queryAllEvaluate</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 浏览评论 -->
+		<action name="queryAllPassEvaluate" class="evaluateAction" method="queryAllPassEvaluate">
+			<result name="success">/evaluate_info.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 查询评论 -->
+		<action name="queryAllPassEvaluateByContent" class="evaluateAction" method="queryAllPassEvaluateByContent">
+			<result name="success">/evaluate_info.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 找回密码 -->
+		<action name="forgerPwd" class="userInfoAction" method="forgerPwd">
+			<result name="success">/index.jsp</result>
+			<result name="err">/error.jsp</result>
+		</action>
+		
+		<!-- 旅客是否存在 -->
+		<action name="cheakUserNo" class="guestAction" method="cheakUserNo">
+		</action>
+		
+		<!-- 店家是否存在 -->
+		<action name="cheakInnUserNo" class="bdMapAction" method="cheakInnUserNo">
+		</action>
+	</package>
+</struts>
