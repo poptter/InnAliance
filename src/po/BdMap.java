@@ -10,8 +10,8 @@ public class BdMap implements java.io.Serializable {
 
 	private Integer mapId;	//地图编号
 	private Inn inn;		//地图对应客栈
-	private String mapX;	//地图经度
-	private String mapY;	//地图纬度
+	private String mapX;	//地图经度信息
+	private String mapY;	//地图纬度信息
 
 	// Constructors
 
