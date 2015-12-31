@@ -3,19 +3,18 @@ package po;
 import java.util.Date;
 
 /**
- * Evaluate entity. @author MyEclipse Persistence Tools
+ * è¯„è®ºå®ä½“ç±»
  */
-
 public class Evaluate implements java.io.Serializable {
 
 	// Fields
 
-	private Integer evaluateId;		//ÆÀÂÛ±àºÅ
-	private Inn inn;				//ÆÀÂÛ¿ÍÕ»
-	private Guest guest;			//ÆÀÂÛÂÃ¿Í
-	private String evaluateContent;	//ÆÀÂÛÄÚÈİ
-	private Date evaluateTime;		//ÆÀÂÛÊ±¼ä
-	private String evaluateState;	//ÆÀÂÛ×´Ì¬
+	private Integer evaluateId;		//è¯„è®ºç¼–å·
+	private Inn inn;			//è¯„è®ºå®¢æ ˆ
+	private Guest guest;			//è¯„è®ºæ—…å®¢
+	private String evaluateContent;		//è¯„è®ºå†…å®¹
+	private Date evaluateTime;		//è¯„è®ºæ—¶é—´
+	private String evaluateState;		//è¯„è®ºçŠ¶æ€
 
 	// Constructors
 
